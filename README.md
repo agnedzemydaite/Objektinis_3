@@ -342,14 +342,15 @@ Programa su _struct_ veikia siek tiek greiciau nei su _class_, tačiau žymaus s
 #### Programos įdiegimo žingsniai:
 - Įsitikinti, kad kompiuteryje turite C++ kompiliatorių, cmake, make ir git, jei neturite - įsidiekite.
 - Atsidarykite komandinę eilutę (terminalą) savo kompiuteryje ir įveskite šias komandas:
-  -  `git clone -b v1.0 https://github.com/agnedzemydaite/Objektinis_programavimas_pratybos.git`
+  -  `git clone -b v1.1 https://github.com/agnedzemydaite/Objektinis_2.git`
   -  `cd Objektinis_programavimas_pratybos`
 - Sukurkite katalogą, kuriame bus generuojami "build" failai:
   - `mkdir build`
   - `cd build`
 - Priklausomai nuo norimos naudoti versijos, įveskite:
-  - Vector versijai: `cmake ..`
-  - List versijai: `cmake -DUSE_VECTOR=OFF -DUSE_LIST=ON ..`
+  - Vector versijai: `cmake -DUSE_VECTOR=ON ..`
+  - List versijai: `cmake -DUSE_LIST=ON ..`
+  - Vector class versijai: `cmake -DUSE_VECTOR_CLASS=ON ..`
 - Kompiliuokite projektą:
   - `make`
 - Paleiskite programą:

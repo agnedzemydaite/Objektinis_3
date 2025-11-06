@@ -177,7 +177,7 @@ Lyginant <em>vector</em> ir <em>list</em> konteirių spartą, matome, kad visose
 
 ### Struktūros ir klasės spartos palyginimas
 
-Buvo naudojama programa su _vector_ konteineriu.
+Buvo naudojama programa su _vector_ konteineriu ir 3 strategija.
 
 ### _Class_ versija
 

@@ -41,6 +41,15 @@ public:
     void vidurkis();
     void mediana();
     
-    ~studentas() { }
+    ~studentas() {
+        var_.clear();
+        pav_.clear();
+        paz_.clear();
+        gal_vid_ = 0.0;
+        gal_med_ = 0.0;
+        egz_ = 0;
+        n_ = 0;
+        suma_ = 0;
+    }
 };
 

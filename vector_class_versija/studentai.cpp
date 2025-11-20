@@ -305,6 +305,9 @@ void studentas::mediana(){
 
 //Rule of three
 void rule_of_three(){
+    ofstream fout1("stud.txt");
+    fout1 <<"Vardas2 Pavarde2 3 1 10 10 9";
+    fout1.close();
     studentas s1;
     studentas s2;
     cout << "Iveskite vieno studento duomenis: " << endl;

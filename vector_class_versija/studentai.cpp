@@ -5,6 +5,7 @@ using std::cout;
 using std::endl;
 using std::to_string;
 using std::cin;
+using std::stoi;
 using std::chrono::high_resolution_clock;
 using std::chrono::milliseconds;
 using std::chrono::duration_cast;

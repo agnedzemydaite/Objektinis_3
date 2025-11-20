@@ -6,6 +6,7 @@
 #include "spausdinimas.h"
 
 #include <chrono>
+using std::cin;
 using std::cout;
 using std::endl;
 using std::chrono::high_resolution_clock;
@@ -44,7 +45,7 @@ int main(){
             laikas.push_back(duration);
         }
     }
- 
+    
     //Pagrindinis meniu
     pasirinkimas = 0;
     cout << "----------------------------------------------------------" << endl;
@@ -59,24 +60,32 @@ int main(){
     cout << endl << "Iveskite savo pasirinkima: ";
     pasirinkimas = pasirink_iv(1, 4);
     
-    if(pasirinkimas == 1)
-        stud_iv(studentai, n, []() {
-            studentas s;
-            s.ivest_su_n();
-            return s;
-        });
+    if(pasirinkimas == 1){
+        ivestis = ivestis_rezimas::rankinis;
+        cout << "Kiek studentu grupeje? "; n = n_iv("Kiek studentu grupeje?");
+        for(auto i = 0; i < n; i++){
+            studentas s1;
+            cin >> s1;
+            studentai.push_back(s1);
+        }
+        cin.ignore();
+    }
     else if(pasirinkimas == 2)
         stud_iv(studentai, n, []() {
             studentas s;
             s.ivest_be_n();
             return s;
         });
-    else if(pasirinkimas == 3)
-        stud_iv(studentai, n, [](){
-            studentas s;
-            s.rando();
-            return s;
-        });
+    else if(pasirinkimas == 3){
+        ivestis = ivestis_rezimas::generuojamas;
+        cout << "Kiek studentu grupeje? "; n = n_iv("Kiek studentu grupeje?");
+        for(auto i = 0; i < n; i++){
+            studentas s1;
+            cin >> s1;
+            studentai.push_back(s1);
+        }
+        cin.ignore();
+    }
     else if(pasirinkimas == 4){
         ivest_f(studentai, n, pav, testavimas);
     }
@@ -149,7 +158,7 @@ int main(){
         
         cout << endl << "Iveskite savo pasirinkima: ";
         pasirinkimas_2 = pasirink_iv(1, 4);
-        rikiavimas(studentai, pasirinkimas_2);
+        rikiavimas(studentai_org, pasirinkimas_2);
         rikiavimas(vargsai, pasirinkimas_2);
         rikiavimas(kieti, pasirinkimas_2);
         

@@ -12,6 +12,115 @@ using std::random_device;
 using std::mt19937;
 using std::uniform_int_distribution;
 
+using std::left;
+using std::right;
+using std::setw;
+using std::fixed;
+using std::setprecision;
+
+using std::cerr;
+
+ivestis_rezimas ivestis = ivestis_rezimas::rankinis;
+isvesties_rezimas isvestis = isvesties_rezimas::abu;
+
+//Operatoriai
+istream& operator>>(istream& is, studentas& s){
+    bool pasirinkimas1 = (ivestis == ivestis_rezimas::generuojamas);
+    bool pasirinkimas2 = (&is == &cin && ivestis == ivestis_rezimas::rankinis);
+    
+    random_device rd;
+    mt19937 mt(rd());
+    uniform_int_distribution<int> kiek_dist(0,20);
+    uniform_int_distribution<int> paz_dist(1,10);
+    
+    int paz;
+    if(&is == &cin) cout << "Vardas: ";
+    is >> s.var_;
+    if(&is == &cin) cout << "Pavarde: ";
+    is >> s.pav_;
+    
+    if(pasirinkimas2) cout << "Iveskite pazymiu skaiciu: ";
+    if(pasirinkimas1) s.n_ = kiek_dist(mt);
+    else s.n_ = s.patikrinimas_n(is);
+    for(int i = 0; i < s.n_; i++){
+        if(pasirinkimas2) cout << i+1 << " ";
+        if(pasirinkimas1) paz = paz_dist(mt);
+        else paz = s.patikrinimas_paz(is);
+        s.paz_.push_back(paz);
+        s.suma_ += paz;
+    }
+    if(pasirinkimas2) cout << "Iveskite egzamino pazymi: ";
+    if(pasirinkimas1) s.egz_ = paz_dist(mt);
+    else s.egz_ = s.patikrinimas_paz(is);
+    
+    s.vidurkis();
+    s.mediana();
+    return is;
+}
+ostream& operator<<(ostream& os, const studentas& s){
+    bool vid = (isvestis == isvesties_rezimas::vidurkis);
+    bool med = (isvestis == isvesties_rezimas::mediana);
+    bool abu = (isvestis == isvesties_rezimas::abu);
+    
+    os << left << setw(15) << s.var_ << setw(20) << s.pav_;
+    if(vid) os << setw(17) << fixed << setprecision(2) << s.gal_vid_ << endl;
+    if(med) os << setw(17) << fixed << setprecision(2) << s.gal_med_ << endl;
+    if(abu) os << setw(17) << fixed << setprecision(2) << s.gal_vid_ << setw(17) << fixed << setprecision(2) << s.gal_med_ << endl;
+    return os;
+}
+
+//Tikrinimas ar geras skaicius
+int studentas::patikrinimas_n(istream& is){
+    string x;
+
+    while(true){
+        is >> x;
+        bool visas_skaicius = all_of(x.begin(), x.end(), ::isdigit);
+        if(!visas_skaicius){
+            if(&is == &cin){
+                cout << "Padarėte klaidą, bandykite iš naujo: ";
+            }
+            else{
+                cerr << "Ivestas netinkamas pazymys (" << x << "), praleidziam.\n";
+                continue;
+            }
+        }
+        else{
+            return stoi(x);
+        }
+    }
+}
+int studentas::patikrinimas_paz(istream& is){
+    string x;
+    
+    while(true){
+        if(!(is >> x)) return 0;
+        
+        bool visas_skaicius = all_of(x.begin(), x.end(), ::isdigit);
+        if(!visas_skaicius){
+            if(&is == &cin){
+                cout << "Padarėte klaidą, bandykite iš naujo: ";
+            }
+            else{
+                cerr << "Įvestas netinkamas pažymys (" << x << "), praleidžiam.\n";
+            }
+            continue;
+        }
+        int sk = stoi(x);
+        if (sk < 1 || sk > 10){
+            if (&is == &cin) {
+                cout << "Padarėte klaidą, bandykite iš naujo: ";
+                continue;
+            } else {
+                cerr << "Įvestas netinkamas pažymys (" << x << "), praleidžiame.\n";
+                continue;
+            }
+        }
+
+        return sk;
+        
+    }
+}
 
 //Ivestis
 void studentas::ivest_su_n(){
@@ -161,7 +270,6 @@ bool studentas::failas(string vardas, string pavarde, string line){
     return !paz_.empty() || egz_ != 0;
 }
 
-    
 //Galutinis balas
 void studentas::vidurkis(){
     if( n_ == 0){
@@ -188,3 +296,4 @@ void studentas::mediana(){
         gal_med_ = med*0.4+egz_*0.6;
     }
 }
+

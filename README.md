@@ -42,6 +42,10 @@ Apskaičiuoti pateiktų studentų galutinį įvertinimą, pagal nurodytą formul
 ###Vartotojas gali pasirinkti, ar nori ištestuoti _Rule of Three_:
 <img src="nuotraukos/rule_of_three.png" alt="Rule of Three" width="400"/>
 
+<b>Pasirinkus 1 variantą:</b>
+<p>Sukuriamas tekstinis failas, kur parodoma, kaip pasikeitė studentai: </p>
+<img src="nuotraukos/rule_of_three_failas.png" alt="Rule of Three failas" width="400"/>
+
 ### Vartotojas gali pasirinkti, kaip įvesti studentų duomenis:
 
 <img src="nuotraukos/Ivestis.png" alt="Studentų duomenų įvedimas" width="400"/>

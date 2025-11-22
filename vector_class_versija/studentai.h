@@ -77,6 +77,9 @@ public:
     //III. Copy Assignment
     studentas& operator=(const studentas& kitas) {
         studentas temp(kitas);
+        if (this == &kitas) {
+            return *this;
+        }
         std::swap(var_, temp.var_);
         std::swap(pav_, temp.pav_);
         std::swap(paz_, temp.paz_);
@@ -86,6 +89,18 @@ public:
         std::swap(n_, temp.n_);
         std::swap(suma_, temp.suma_);
         return *this;
+    }
+    
+    //Palyginimas
+    bool operator==(const studentas& kitas) const{
+        return var_ == kitas.var_
+        && pav_     == kitas.pav_
+        && paz_     == kitas.paz_
+        && egz_     == kitas.egz_
+        && gal_vid_ == kitas.gal_vid_
+        && gal_med_ == kitas.gal_med_
+        && n_       == kitas.n_
+        && suma_    == kitas.suma_;
     }
 };
 

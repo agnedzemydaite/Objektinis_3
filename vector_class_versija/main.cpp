@@ -56,7 +56,6 @@ int main(){
     cout << endl << "Iveskite savo pasirinkima: ";
     pasirinkimas = pasirink_iv(1, 2);
     if(pasirinkimas == 1) rule_of_three();
-    cin.ignore();
     
     //Pagrindinis meniu
     pasirinkimas = 0;

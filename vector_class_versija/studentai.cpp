@@ -101,7 +101,7 @@ int studentas::patikrinimas_paz(istream& is){
     
     while(true){
         if(!(is >> x)) return 0;
-        
+
         bool visas_skaicius = all_of(x.begin(), x.end(), ::isdigit);
         if(!visas_skaicius){
             if(&is == &cin){
@@ -312,6 +312,7 @@ void rule_of_three(){
     studentas s2;
     cout << "Iveskite vieno studento duomenis: " << endl;
     cin >> s1;
+    cin.ignore();
     ifstream fin("stud.txt");
     fin >> s2;
     fin.close();
@@ -320,18 +321,22 @@ void rule_of_three(){
     fout << setw(3) << left << "Nr" << setw(16) << left << "Vieta atmintyje"<< setw(15) << left << "Vardas" << setw(20) << left << "Pavarde" << setw(17) << left << "Galutinis (Vid.)" << setw(17) << left << "Galutinis (Med.)"  <<endl;
     fout  <<setw(3) << left << "s1" << setw(16) << left << &s1 << s1;
     fout << setw(3) << left << "s2" << setw(16) << left << &s2 << s2;
+    fout << endl << "Patikriname ar studentu duomenys sutampa (s1 == s2): ";
+    if(s1 == s2) fout << "True" << endl;
+    else fout << "False" << endl;
 
-    fout << endl << "Pakeiciame studenta s2 i s1 (s2 = s1)." << endl;
+    fout << "Pakeiciame studenta s2 i s1 (s2 = s1)." << endl;
     s2 = s1;
-    fout << setw(3) << left << "Nr" << setw(16) << left << "Vieta atmintyje"<< setw(15) << left << "Vardas" << setw(20) << left << "Pavarde" << setw(17) << left << "Galutinis (Vid.)" << setw(17) << left << "Galutinis (Med.)"  <<endl;
-    fout  <<setw(3) << left << "s1" << setw(16) << left << &s1 << s1;
-    fout << setw(3) << left << "s2" << setw(16) << left << &s2 << s2;
+    fout << "Patikriname ar studentu duomenys sutampa (s1 == s2): ";
+    if(s1 == s2) fout << "True" << endl;
+    else fout << "False" << endl;
     
     fout << endl << "Sukuriam nauja studenta s3 is s1  (s3(s1))." << endl;
     studentas s3(s1);
-    fout << setw(3) << left << "Nr" << setw(16) << left << "Vieta atmintyje"<< setw(15) << left << "Vardas" << setw(20) << left << "Pavarde" << setw(17) << left << "Galutinis (Vid.)" << setw(17) << left << "Galutinis (Med.)"  <<endl;
-    fout  <<setw(3) << left << "s1" << setw(16) << left << &s1 << s1;
-    fout << setw(3) << left << "s3" << setw(16) << left << &s3 << s3;
+    fout << "Patikriname ar studentu duomenys sutampa (s1 == s3): ";
+    if(s1 == s3) fout << "True" << endl;
+    else fout << "False" << endl;
+
     fout.close();
     cout << "Testo rezultatai ivesti i faila 'Rule_of_Three'" << endl;
 }

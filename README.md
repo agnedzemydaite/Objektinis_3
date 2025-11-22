@@ -69,7 +69,7 @@ Atspausdinami duomenys
 
 <img src="nuotraukos/failu_generavimas.png" alt="Failų generavimo pasirinkimas" width="400"/>
 
-<b>Pasirinktus 2 variantą:</b>
+<b>Pasirinktus 1 variantą:</b>
 <p>Programa sugeneruoja 5 atsitiktinius studentų sąrašų failus, sudarytus iš: 1 000, 10 000, 100 000, 1 000 000, 10 000 000 įrašų.</p>
 
 ### Vartotojas gali pasirinkti, ar nori ištestuoti _Rule of Three_:

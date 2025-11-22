@@ -77,7 +77,6 @@ Atspausdinami duomenys
 
 <b>Pasirinkus 1 variantą:</b>
 <p>Sukuriamas tekstinis failas, kur parodoma, kaip pasikeitė studentai: </p>
-<img src="nuotraukos/rule_of_three_failas1" alt="Rule of Three" width="400"/>
 
 ### Vartotojas gali pasirinkti, kaip įvesti studentų duomenis:
 

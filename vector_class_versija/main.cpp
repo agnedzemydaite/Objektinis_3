@@ -26,6 +26,7 @@ int main(){
     vector <double> laikas;
     double testavimas = 0;
     string pav;
+    zmogus z;
     
     cout << "--------------------------------------------------" << endl;
     cout << "---------- Ar norite sugeneruoti failus ----------" << endl;

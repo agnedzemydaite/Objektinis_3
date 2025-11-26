@@ -7,15 +7,15 @@
 #include <iomanip>
 #include <fstream>
 
+#include "zmogus.h"
+
 using std::string;
 using std::vector;
 using std::istream;
 using std::ostream;
 
-class studentas {
+class studentas: public zmogus {
 private:
-    string var_;
-    string pav_;
     vector <int> paz_;
     int egz_;
     double gal_vid_;
@@ -25,11 +25,12 @@ private:
     
 public:
     //Default konstruktorius
-    studentas() : egz_(0), n_(0), suma_(0), gal_med_(0), gal_vid_(0) { }
+    studentas() : zmogus(), egz_(0), n_(0), suma_(0), gal_med_(0), gal_vid_(0) { }
     
     //Reiksmiu gavimas (get'eriai)
     inline string vardas() const { return var_; }
     inline string pavarde() const { return pav_; }
+    
     inline int egz() const { return egz_; }
     inline int n() const { return n_; }
     inline int suma() const { return suma_; }
@@ -55,8 +56,6 @@ public:
     //RULE OF THREE
     //I. Destruktorius
     ~studentas() {
-        var_.clear();
-        pav_.clear();
         paz_.clear();
         gal_vid_ = 0.0;
         gal_med_ = 0.0;
@@ -66,8 +65,7 @@ public:
     }
     //II. Copy konstruktorius
     studentas(const studentas& kitas)
-        : var_(kitas.var_),
-          pav_(kitas.pav_),
+        : zmogus(kitas.var_, kitas.pav_),
           paz_(kitas.paz_),
           egz_(kitas.egz_),
           gal_vid_(kitas.gal_vid_),
@@ -76,18 +74,18 @@ public:
           suma_(kitas.suma_){}
     //III. Copy Assignment
     studentas& operator=(const studentas& kitas) {
-        studentas temp(kitas);
         if (this == &kitas) {
             return *this;
         }
-        std::swap(var_, temp.var_);
-        std::swap(pav_, temp.pav_);
-        std::swap(paz_, temp.paz_);
-        std::swap(egz_, temp.egz_);
-        std::swap(gal_vid_, temp.gal_vid_);
-        std::swap(gal_med_, temp.gal_med_);
-        std::swap(n_, temp.n_);
-        std::swap(suma_, temp.suma_);
+        var_ = kitas.var_;
+        pav_ = kitas.pav_;
+        
+        paz_ = kitas.paz_;
+        egz_ = kitas.egz_;
+        gal_vid_ = kitas.gal_vid_;
+        gal_med_ = kitas.gal_med_;
+        n_ = kitas.n_;
+        suma_ = kitas.suma_;
         return *this;
     }
     

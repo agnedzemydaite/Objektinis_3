@@ -76,6 +76,39 @@ Apskaičiuoti pateiktų studentų galutinį įvertinimą, pagal nurodytą formul
         return *this;
     }
 ```
+
+### Perdengti metodai
+- ### Įvesties operatorius `operator >>`
+
+Vartojas gali įvesti studento duomenis naudodamas `cin >> studentas` arba `fin >> studentas`
+
+Prieš naudojant operatorių galima nustatyti įvesties rėžimą: įvestis rankiniu būdu ar įvestis sugeneruojama (automtiškai parinkta rankinis įvedimas)
+- rankinis būdas: `ivestis = ivestis_rezimas::rankinis;`
+- generavimas: `ivestis = ivestis_rezimas::generuojamas;`
+
+Vartotojui reikės sukurti failą su duomenimis arba juos įvesti:
+- vardą
+- pavardę
+- n.d. skaičių
+- pažymius
+- egzamino pažymį
+  
+(jei duomenys generuojami pakaks įvesti vardą ir pavardę).
+
+- ### Išvesties operatorius `operator <<`
+
+Vartotojas gali išvesti duomenis naudodamas `cout << studentas`arba `fout << studentas`
+
+Prieš naudojant operatorių galima nustatyti išvesties rėžimą: išveda galutinį balą apskaičiuotą pagal vidurkį, medianą arba abu (automatiškai parinkta abu)
+- vidurkis: `isvestis = isvesties_rezimas::vidurkis;`
+- mediana: `isvestis = isvesties_rezimas::mediana;`
+- abu: `isvestis = isvesties_rezimas::abu;`
+
+Atspausdinami duomenys
+- vardas
+- pavardė
+- galutinis rezultatas
+
 ### Versija 1.5 - patobulinta 1.5 versija:
 - Sukurta bazinė (abstrakti) klasė _žmogus_.
 - Klasė _studentas_ kuriama iš bazinės klasės _žmogus_.
@@ -113,37 +146,7 @@ class studentas: public zmogus{...)
 
 <img src="nuotraukos/klaida.png" alt="Rule of Three" width="200"/>
 
-### Perdengti metodai
-- ### Įvesties operatorius `operator >>`
-
-Vartojas gali įvesti studento duomenis naudodamas `cin >> studentas` arba `fin >> studentas`
-
-Prieš naudojant operatorių galima nustatyti įvesties rėžimą: įvestis rankiniu būdu ar įvestis sugeneruojama (automtiškai parinkta rankinis įvedimas)
-- rankinis būdas: `ivestis = ivestis_rezimas::rankinis;`
-- generavimas: `ivestis = ivestis_rezimas::generuojamas;`
-
-Vartotojui reikės sukurti failą su duomenimis arba juos įvesti:
-- vardą
-- pavardę
-- n.d. skaičių
-- pažymius
-- egzamino pažymį
-  
-(jei duomenys generuojami pakaks įvesti vardą ir pavardę).
-
-- ### Išvesties operatorius `operator <<`
-
-Vartotojas gali išvesti duomenis naudodamas `cout << studentas`arba `fout << studentas`
-
-Prieš naudojant operatorių galima nustatyti išvesties rėžimą: išveda galutinį balą apskaičiuotą pagal vidurkį, medianą arba abu (automatiškai parinkta abu)
-- vidurkis: `isvestis = isvesties_rezimas::vidurkis;`
-- mediana: `isvestis = isvesties_rezimas::mediana;`
-- abu: `isvestis = isvesties_rezimas::abu;`
-
-Atspausdinami duomenys
-- vardas
-- pavardė
-- galutinis rezultatas
+taip pat galima patikrinti su komanda `is_abstract<zmogus>::value`.
 
 
 ## Išsamus naujausios versijos veikimo principas

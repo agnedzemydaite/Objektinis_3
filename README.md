@@ -508,7 +508,9 @@ Programa su _struct_ veikia siek tiek greiciau nei su _class_, tačiau žymaus s
   - List versijai: `cmake -DUSE_LIST=ON ..`
   - Vector class versijai: `cmake -DUSE_VECTOR_CLASS=ON ..`
 - Kompiliuokite projektą:
-  - `make`
+  - `cmake --build .`
+- Paleiskite testus:
+- `./testavimas --gtest_color=yes --gtest_print_time=1`
 - Paleiskite programą:
   - `./Studentai`
 - (Pasirinktinai) Jei norite iš naujo sukompiliuoti nuo nulio:

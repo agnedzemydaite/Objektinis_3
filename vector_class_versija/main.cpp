@@ -13,12 +13,27 @@ using std::chrono::high_resolution_clock;
 using std::chrono::milliseconds;
 using std::chrono::duration_cast;
 
+/**
+ * @file main.cpp
+ * @brief Pagrindinis programos vykdymo failas.
+ *
+ * Programos tikslas:
+ * Nuskaityti studentus ir išvesti jų galutinius rezultatus.
+ *
+ * Programa leidžia:
+ * - generuoti failus,
+ * - testuoti klasės Rule of Three,
+ * - įvesti studentų duomenis pasirinktu būdu,
+ * - rūšiuoti studentus pagal parinktą kriterijų į dvi grupes,
+ * - rikiuoti studentus pagal parinktą kriterijų,
+ * - spausdinti rezultatus į ekraną arba į failą.
+ */
+
 int main(){
     
-    //užtikrina skirtingą atsitiktinių skaičių gavimą
     srand(static_cast<unsigned int>(time(0)));
     
-    int n = 0; //studentų skaičius
+    int n = 0;
     int pasirinkimas = 0;
     vector <studentas> studentai;
     vector <studentas> vargsai;
@@ -26,8 +41,8 @@ int main(){
     vector <double> laikas;
     double testavimas = 0;
     string pav;
-    zmogus z;
     
+    // Failų generavimo meniu
     cout << "--------------------------------------------------" << endl;
     cout << "---------- Ar norite sugeneruoti failus ----------" << endl;
     cout << "--------------------------------------------------" << endl;
@@ -46,7 +61,7 @@ int main(){
             laikas.push_back(duration);
         }
     }
-    //Rule of three
+    //Rule of three meniu
     pasirinkimas = 0;
     cout << "--------------------------------------------------------" << endl;
     cout << "---------- Ar norite istestuoti Rule of Three ----------" << endl;
@@ -58,7 +73,7 @@ int main(){
     pasirinkimas = pasirink_iv(1, 2);
     if(pasirinkimas == 1) rule_of_three();
     
-    //Pagrindinis meniu
+    //Studentų nuskaitymo meniu
     pasirinkimas = 0;
     cout << "----------------------------------------------------------" << endl;
     cout << "---------- Studentu pazymiu pasirinkimo sistema ----------" << endl;
@@ -110,7 +125,7 @@ int main(){
         vector <studentas> studentai_org = studentai;
         if(pasirinkimas >= 1 && pasirinkimas <=3) vieta_atmintyje(studentai);
         
-        //Rusiavimo meniu
+        //Rušiavimo meniu
         pasirinkimas = 0;
         int pasirinkimas_3 = 0;
         cout << "----------------------------" << endl;
@@ -143,7 +158,7 @@ int main(){
         cout << "Studentu surusiavimas uztruko: " << duration << " ms" << endl;
         testavimas += duration;
         
-        //Vidurkio ir medianos pasirinkimo meniu
+        //Galutinio balo apskaičiavimo meniu
         pasirinkimas = 0;
         cout << "-----------------------------------------------" << endl;
         cout << "-- Galutinio balo apskaiciavimo pasirinkimai --" << endl;
@@ -156,7 +171,7 @@ int main(){
         cout << endl << "Iveskite savo pasirinkima: ";
         pasirinkimas = pasirink_iv(1, 3);
         
-        //Rikiavimo pasirinkimo meniu
+        //Rikiavimo meniu
         int pasirinkimas_2 = 0;
         
         cout << "----------------------------" << endl;
@@ -221,6 +236,7 @@ int main(){
             testavimas = testavimas + duration1;
 
         }
+        //Visu studentų spausdinimo meniu
         cout << endl;
         cout << "-------------------------------------------------" << endl;
         cout << "-- Ar norite, kad atspausdintu visus studentus --" << endl;

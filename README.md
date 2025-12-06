@@ -23,13 +23,169 @@ Apskaičiuoti pateiktų studentų galutinį įvertinimą, pagal nurodytą formul
 - Pridėtos dvi papildomos studentų rūšiavimo į dvi gropes strategijos.
 - Atlikta studentų rūšiavimo spartos analizė.
 
-## Išsamus galutinės versijos veikimo principas
+### Versija 1.1 - patobulinta 1.0 versija:
+- Sukurta nauja vector versija, kur _struct_ pakeista į _class_.
+- Atlikta struktūrų analizė.
+
+### Versija 1.2 - patobulinta 1.1 versija:
+- Relizuota "Rule of Three".
+- Pritaikyti perdengti įvesties ir išvesties metodai.
+
+### Rule of Three
+#### Destruktorius
+```bash
+~studentas() {
+        var_.clear();
+        pav_.clear();
+        paz_.clear();
+        gal_vid_ = 0.0;
+        gal_med_ = 0.0;
+        egz_ = 0;
+        n_ = 0;
+        suma_ = 0;
+}
+```
+#### Kopijavimo konstruktorius
+```bash
+      studentas(const studentas& kitas)
+        : var_(kitas.var_),
+          pav_(kitas.pav_),
+          paz_(kitas.paz_),
+          egz_(kitas.egz_),
+          gal_vid_(kitas.gal_vid_),
+          gal_med_(kitas.gal_med_),
+          n_(kitas.n_),
+          suma_(kitas.suma_){}
+```
+
+#### Priskyrimo operatorius (copy assignment)
+```bash
+      studentas& operator=(const studentas& kitas) {
+        studentas temp(kitas);
+        if (this == &kitas) {
+            return *this;
+        }
+        std::swap(var_, temp.var_);
+        std::swap(pav_, temp.pav_);
+        std::swap(paz_, temp.paz_);
+        std::swap(egz_, temp.egz_);
+        std::swap(gal_vid_, temp.gal_vid_);
+        std::swap(gal_med_, temp.gal_med_);
+        std::swap(n_, temp.n_);
+        std::swap(suma_, temp.suma_);
+        return *this;
+    }
+```
+
+### Perdengti metodai
+- ### Įvesties operatorius `operator >>`
+
+Vartojas gali įvesti studento duomenis naudodamas `cin >> studentas` arba `fin >> studentas`
+
+Prieš naudojant operatorių galima nustatyti įvesties rėžimą: įvestis rankiniu būdu ar įvestis sugeneruojama (automtiškai parinkta rankinis įvedimas)
+- rankinis būdas: `ivestis = ivestis_rezimas::rankinis;`
+- generavimas: `ivestis = ivestis_rezimas::generuojamas;`
+
+Vartotojui reikės sukurti failą su duomenimis arba juos įvesti:
+- vardą
+- pavardę
+- n.d. skaičių
+- pažymius
+- egzamino pažymį
+  
+(jei duomenys generuojami pakaks įvesti vardą ir pavardę).
+
+- ### Išvesties operatorius `operator <<`
+
+Vartotojas gali išvesti duomenis naudodamas `cout << studentas`arba `fout << studentas`
+
+Prieš naudojant operatorių galima nustatyti išvesties rėžimą: išveda galutinį balą apskaičiuotą pagal vidurkį, medianą arba abu (automatiškai parinkta abu)
+- vidurkis: `isvestis = isvesties_rezimas::vidurkis;`
+- mediana: `isvestis = isvesties_rezimas::mediana;`
+- abu: `isvestis = isvesties_rezimas::abu;`
+
+Atspausdinami duomenys
+- vardas
+- pavardė
+- galutinis rezultatas
+
+### Versija 1.5 - patobulinta 1.2 versija:
+- Sukurta bazinė (abstrakti) klasė _žmogus_.
+- Klasė _studentas_ kuriama iš bazinės klasės _žmogus_.
+
+#### Klasė _žmogus_
+
+```bash
+class zmogus{
+protected:
+    string var_;
+    string pav_;
+    
+public:
+    zmogus(): var_(""), pav_("") {}
+    zmogus(const string& vardas, const string& pavarde): var_(vardas), pav_(pavarde) {}
+    
+    virtual string vardas() const = 0;
+    virtual string pavarde() const = 0;
+    
+    //Destruktorius
+    virtual ~zmogus() {
+            var_.clear();
+            pav_.clear();
+    }
+    
+};
+```
+#### Klasė _studentas_
+
+```bash
+class studentas: public zmogus{...)
+```
+
+#### Sukurtos bazinės klasės _žmogus_ objektų kūrimas (`zmogus z`) yra negalimas:
+
+<img src="nuotraukos/klaida.png" alt="Rule of Three" width="200"/>
+
+taip pat galima patikrinti su komanda `is_abstract<zmogus>::value`.
+
+### Versija 2.0 - patobulinta 1.5 versija:
+- Sukurta dokumentacija naudojant _Doxygen_.
+- Realizuoti Unit Testai naudojant _Google Tests_.
+
+#### Doxygen dokumentacija
+<img src="nuotraukos/dokumentacija.png" alt="Doxygen dokumentacija" width="400"/>
+
+#### Unit Testai
+Unit testai iškarpa:
+```bash
+TEST(SkaiciavimoTestai, GalutnisVidurkis) {
+    studentas s;
+    s.setPaz({8, 10});
+    s.setEgz(10);
+    s.setSuma(18.0);
+    s.setN(2.0);
+    s.vidurkis();
+    EXPECT_NEAR(s.gal_vid(), 9.6, 1e-6);
+}
+```
+
+Paleidus testus gauname rezultatą:
+<img src="nuotraukos/testai.png" alt="Unit testų rezultatas" width="400"/>
+
+## Išsamus naujausios versijos veikimo principas
 ### Vartotojas gali pasirinkti, ar nori generuoti studentų duomenų failus:
 
 <img src="nuotraukos/failu_generavimas.png" alt="Failų generavimo pasirinkimas" width="400"/>
 
-<b>Pasirinktus 2 variantą:</b>
+<b>Pasirinktus 1 variantą:</b>
 <p>Programa sugeneruoja 5 atsitiktinius studentų sąrašų failus, sudarytus iš: 1 000, 10 000, 100 000, 1 000 000, 10 000 000 įrašų.</p>
+
+### Vartotojas gali pasirinkti, ar nori ištestuoti _Rule of Three_:
+<img src="nuotraukos/rule_of_three.png" alt="Rule of Three" width="400"/>
+
+<b>Pasirinkus 1 variantą:</b>
+<p>Sukuriamas tekstinis failas, kur parodoma, kaip pasikeitė studentai: </p>
+<img src="nuotraukos/rule_of_three_file.png" alt="Rule of Three" width="400"/>
 
 ### Vartotojas gali pasirinkti, kaip įvesti studentų duomenis:
 
@@ -175,6 +331,162 @@ Abejose versijose lyginant 1 ir 2 strategiją, gavome, kad 1 veikė žymiai grei
 Lyginant <em>vector</em> ir <em>list</em> konteirių spartą, matome, kad visose strategijose <em>vector</em> veikė gan greičiau nei <em>list</em>.
 </p>
 
+### Struktūros ir klasės spartos palyginimas
+
+Buvo naudojama programa su _vector_ konteineriu ir 3 strategija.
+
+### _Class_ versija
+
+<table>
+  <tr>
+    <th>Įrašų sk</th>
+    <th></th>
+    <th>O1</th>
+    <th>O2</th>
+    <th>O3</th>
+  </tr>
+  
+  <!-- Pirmas blokas (įrašai) -->
+  <tr>
+    <td rowspan="4">100 000</td>
+    <td>Nuskaitymas</td>
+    <td>0.058 s</td>
+    <td>0.058 s</td>
+    <td>0.057 s</td>
+  </tr>
+  <tr>
+    <td>Rūšiavimas</td>
+    <td> 0.013 s</td>
+    <td> 0.011 s </td>
+    <td> 0.012 s</td>
+  </tr>
+  <tr>
+    <td>Išvedimas</td>
+    <td> 0.055 s </td>
+    <td> 0.055 s </td>
+    <td> 0.051 s </td>
+  </tr>
+  <tr>
+    <td><b>Bendras laikas</b></td>
+    <td> <b>0.126 s</b> </td>
+    <td> <b>0.124 s</b> </td>
+    <td><b> 0.12 s</b> </td>
+  </tr>
+
+  <!-- Antras blokas (įrašai) -->
+  <tr>
+    <td rowspan="4">1 000 000</td>
+    <td>Nuskaitymas</td>
+    <td> 0.552 s </td>
+    <td> 0.568 s </td>
+    <td> 0.57 s </td>
+  </tr>
+  <tr>
+    <td>Rūšiavimas</td>
+    <td> 0.06 s </td>
+    <td> 0.061 s </td>
+    <td> 0.059 s </td>
+  </tr>
+  <tr>
+    <td>Išvedimas</td>
+    <td> 0.474 s </td>
+    <td> 0.465 s </td>
+    <td> 0.468 s</td>
+  </tr>
+  <tr>
+    <td><b>Bendras laikas</b></td>
+    <td> <b> 1.086 s  </b></td>
+    <td> <b> 1.093 s </b></td>
+    <td><b> 1.096 s </b></td>
+  </tr>
+  <!-- Failo dydis atskirai -->
+  <tr>
+    <td></td>
+    <td>Failo dydis</td>
+    <td> 149 KB </td>
+    <td> 148 KB </td>
+    <td> 181 KB </td>
+  </tr>
+</table>
+
+### _Struct_ versija
+
+<table>
+  <tr>
+    <th>Įrašų sk</th>
+    <th></th>
+    <th>O1</th>
+    <th>O2</th>
+    <th>O3</th>
+  </tr>
+  
+  <!-- Pirmas blokas (įrašai) -->
+  <tr>
+    <td rowspan="4">100 000</td>
+    <td>Nuskaitymas</td>
+    <td>0.049 s</td>
+    <td>0.048 s</td>
+    <td>0.048 s</td>
+  </tr>
+  <tr>
+    <td>Rūšiavimas</td>
+    <td> 0.005 s</td>
+    <td> 0.005 s </td>
+    <td> 0.005 s</td>
+  </tr>
+  <tr>
+    <td>Išvedimas</td>
+    <td> 0.058 s </td>
+    <td> 0.061 s </td>
+    <td> 0.055 s </td>
+  </tr>
+  <tr>
+    <td><b>Bendras laikas</b></td>
+    <td> <b>  0.113 s </b> </td>
+    <td> <b> 0.115 s </b></td>
+    <td> <b>0.108 s</b> </td>
+  </tr>
+
+  <!-- Antras blokas (įrašai) -->
+  <tr>
+    <td rowspan="4">1 000 000</td>
+    <td>Nuskaitymas</td>
+    <td> 0.485 s </td>
+    <td> 0.473 s </td>
+    <td> 0.469 s </td>
+  </tr>
+  <tr>
+    <td>Rūšiavimas</td>
+    <td> 0.03 s </td>
+    <td> 0.028 s </td>
+    <td> 0.28 s </td>
+  </tr>
+  <tr>
+    <td>Išvedimas</td>
+    <td> 0.498 s </td>
+    <td> 0.498 s </td>
+    <td> 0.494 s </td>
+  </tr>
+  <tr>
+    <td><b>Bendras laikas</b></td>
+    <td> <b> 1.012 s </b> </td>
+    <td> <b>  0.999 s </b> </td>
+    <td> <b> 0.99 s </b> </td>
+  </tr>
+  <!-- Failo dydis atskirai -->
+  <tr>
+    <td></td>
+    <td>Failo dydis</td>
+    <td> 163 KB </td>
+    <td> 162 KB </td>
+    <td> 178 KB </td>
+  </tr>
+</table>
+
+### Išvados
+
+Programa su _struct_ veikia siek tiek greiciau nei su _class_, tačiau žymaus skirtumo nėra. Taip pat nedaug skiriasi ir flag'ų greičiai. Su _vector_ matome, kad flag'ų greičiai O1 > O2 > O3, tačiau tokio stabilumo negalima pamatyti su _class_.
+
 ## Įdiegimo instrukcija (Linux ir MacOS)
 
 #### Reikalavimai
@@ -186,16 +498,19 @@ Lyginant <em>vector</em> ir <em>list</em> konteirių spartą, matome, kad visose
 #### Programos įdiegimo žingsniai:
 - Įsitikinti, kad kompiuteryje turite C++ kompiliatorių, cmake, make ir git, jei neturite - įsidiekite.
 - Atsidarykite komandinę eilutę (terminalą) savo kompiuteryje ir įveskite šias komandas:
-  -  `git clone -b v1.0 https://github.com/agnedzemydaite/Objektinis_programavimas_pratybos.git`
-  -  `cd Objektinis_programavimas_pratybos`
+  -  `git clone -b v1.5 https://github.com/agnedzemydaite/Objektinis_2.git`
+  -  `cd Objektinis_2`
 - Sukurkite katalogą, kuriame bus generuojami "build" failai:
   - `mkdir build`
   - `cd build`
 - Priklausomai nuo norimos naudoti versijos, įveskite:
-  - Vector versijai: `cmake ..`
-  - List versijai: `cmake -DUSE_VECTOR=OFF -DUSE_LIST=ON ..`
+  - Vector versijai: `cmake -DUSE_VECTOR=ON ..`
+  - List versijai: `cmake -DUSE_LIST=ON ..`
+  - Vector class versijai: `cmake -DUSE_VECTOR_CLASS=ON ..`
 - Kompiliuokite projektą:
-  - `make`
+  - `cmake --build .`
+- Paleiskite testus:
+- `./testavimas --gtest_color=yes --gtest_print_time=1`
 - Paleiskite programą:
   - `./Studentai`
 - (Pasirinktinai) Jei norite iš naujo sukompiliuoti nuo nulio:

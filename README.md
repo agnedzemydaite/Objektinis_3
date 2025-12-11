@@ -1,5 +1,5 @@
 #### [**Nuoroda į versiją 2.0**](#versija-20---patobulinta-15-versija)
-#### [**Nuoroda į diegimo instrukcijas**](#įdiegimo-instrukcija-linux-ir-macos)
+#### [**Nuoroda į diegimo instrukcijas**](#įdiegimo-instrukcija)
 
 
 
@@ -182,6 +182,7 @@ Paleidus testus gauname rezultatą:
 
 ### Versija 3.0 - patobulinta 2.0 versija:
 -Sukurtas setup.exe failas
+
 
 ## Išsamus naujausios versijos veikimo principas
 ### Vartotojas gali pasirinkti, ar nori generuoti studentų duomenų failus:
@@ -498,12 +499,16 @@ Buvo naudojama programa su _vector_ konteineriu ir 3 strategija.
 
 Programa su _struct_ veikia siek tiek greiciau nei su _class_, tačiau žymaus skirtumo nėra. Taip pat nedaug skiriasi ir flag'ų greičiai. Su _vector_ matome, kad flag'ų greičiai O1 > O2 > O3, tačiau tokio stabilumo negalima pamatyti su _class_.
 
-## Įdiegimo instrukcija (Linux ir MacOS)
+## Įdiegimo instrukcija
 
-#### Jei norite naudoti versiją 3.0 užtenka parsisiųsti [setup.exe](./setup.exe).
+#### Jei norite naudoti versiją 3.0 užtenka parsisiųsti [setup.exe](./setup.exe) (windows).
+- Parsisiuntus nurodytą failą, užtenka innstaliuoti programą, ją galite pasiekti iš darbalaukio, _start meniu_, arba _program files/VU/Agne-Dzemydaite_
+- Norėdami pašalinti programą, užtenka paspausti ištrynimo failą `unins000`.
 
-Jei norite naudoti senesnes versijas sekite instrukcijas aprašytas žemiau.
 
+#### Jei norite naudoti senesnes versijas sekite instrukcijas pateiktas žemiau.
+
+## (Linux ir MacOS)
 #### Reikalavimai
 - C++ kompiliatorius (C++20 versija)
 - CMake (3.25 ar naujesnė versija)

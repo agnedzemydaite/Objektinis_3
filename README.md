@@ -1,5 +1,5 @@
 #### [**Nuoroda į versiją 2.0**](#versija-20---patobulinta-15-versija)
-#### [**Nuoroda į Diegimo instrukcijas**](#įdiegimo-instrukcija-linux-ir-macos)
+#### [**Nuoroda į diegimo instrukcijas**](#įdiegimo-instrukcija-linux-ir-macos)
 
 
 

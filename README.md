@@ -525,7 +525,7 @@ Programa su _struct_ veikia siek tiek greiciau nei su _class_, tačiau žymaus s
 ## Naudojimo instrukcija
 
 Norėdami sužinoti, kaip veikia programa, kokius veiksmus galima atlikti ir kokie pasirinkimai galimi,
-peržiūrėkite skyrių [**Išsamus galutinės versijos veikimo principas**](##išsamus-naujausios-versijos-veikimo-principas)
+peržiūrėkite skyrių [**Išsamus galutinės versijos veikimo principas**](#išsamus-naujausios-versijos-veikimo-principas)
 
 
 Trumpai:

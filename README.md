@@ -1,4 +1,4 @@
-#### [**Nuoroda į versiją 2.0**](#versija-20---patobulinta-15-versija)
+
 #### [**Nuoroda į diegimo instrukcijas**](#įdiegimo-instrukcija)
 
 
@@ -502,8 +502,15 @@ Programa su _struct_ veikia siek tiek greiciau nei su _class_, tačiau žymaus s
 ## Įdiegimo instrukcija
 
 #### Jei norite naudoti versiją 3.0 užtenka parsisiųsti [setup.exe](./setup.exe) (windows).
-- Parsisiuntus nurodytą failą, užtenka innstaliuoti programą, ją galite pasiekti iš darbalaukio, _start meniu_, arba _program files/VU/Agne-Dzemydaite_
-- Norėdami pašalinti programą, užtenka paspausti ištrynimo failą `unins000`.
+- Parsisiuntus nurodytą failą, užtenka instaliuoti programą.
+
+<img src="nuotraukos/setup.png" alt="Rule of Three" width="400"/>
+
+Instaliuotą programą galite pasiekti iš darbalaukio, _start meniu_, arba _program files/VU/Agne-Dzemydaite_
+  
+- Norėdami pašalinti programą, užtenka paspausti ištrynimo failą `unins000` ir pasirinkti 'yes'.
+
+<img src="nuotraukos/unin.png" alt="Rule of Three" width="400"/>
 
 
 #### Jei norite naudoti senesnes versijas sekite instrukcijas pateiktas žemiau.

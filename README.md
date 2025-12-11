@@ -525,7 +525,7 @@ Instaliuotą programą galite pasiekti iš darbalaukio, _start meniu_, arba _pro
 #### Programos įdiegimo žingsniai:
 - Įsitikinti, kad kompiuteryje turite C++ kompiliatorių, cmake, make ir git, jei neturite - įsidiekite.
 - Atsidarykite komandinę eilutę (terminalą) savo kompiuteryje ir įveskite šias komandas:
-  -  `git clone -b v2.0 https://github.com/agnedzemydaite/Objektinis_2.git` (priklausant nuo versijos pakeiskite versijos nr. `v1.5`)
+  -  `git clone -b v2.0 https://github.com/agnedzemydaite/Objektinis_2.git` (priklausant nuo versijos pakeiskite versijos nr. `v2.0`)
   -  `cd Objektinis_2`
 - Sukurkite katalogą, kuriame bus generuojami "build" failai:
   - `mkdir build`

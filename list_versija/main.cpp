@@ -203,6 +203,8 @@ int main(){
         
     }
     cout << endl << pav << " irasu testo laikas: " << testavimas << " ms" << endl;
+    cout << "Programa baigta. Jei norite iseiti, paspauskite Enter..." << endl;
+    cin.get();
     
     return 0;
     

@@ -1,4 +1,7 @@
 #### [**Nuoroda į versiją 2.0**](#versija-20---patobulinta-15-versija)
+#### [**Nuoroda į Diegimo instrukcijas**](#įdiegimo-instrukcija-linux-ir-macos)
+
+
 
 # Studentų galutinio įvertinimo skaičiavimo programa
 ## Programos tikslas
@@ -176,6 +179,9 @@ TEST(SkaiciavimoTestai, GalutnisVidurkis) {
 Paleidus testus gauname rezultatą:
 
 <img src="nuotraukos/testai.png" alt="Unit testų rezultatas" width="400"/>
+
+### Versija 3.0 - patobulinta 2.0 versija:
+-Sukurtas setup.exe failas
 
 ## Išsamus naujausios versijos veikimo principas
 ### Vartotojas gali pasirinkti, ar nori generuoti studentų duomenų failus:
@@ -494,6 +500,10 @@ Programa su _struct_ veikia siek tiek greiciau nei su _class_, tačiau žymaus s
 
 ## Įdiegimo instrukcija (Linux ir MacOS)
 
+#### Jei norite naudoti versiją 3.0 užtenka parsisiųsti [setup.exe](./setup.exe).
+
+Jei norite naudoti senesnes versijas sekite instrukcijas aprašytas žemiau.
+
 #### Reikalavimai
 - C++ kompiliatorius (C++20 versija)
 - CMake (3.25 ar naujesnė versija)
@@ -503,7 +513,7 @@ Programa su _struct_ veikia siek tiek greiciau nei su _class_, tačiau žymaus s
 #### Programos įdiegimo žingsniai:
 - Įsitikinti, kad kompiuteryje turite C++ kompiliatorių, cmake, make ir git, jei neturite - įsidiekite.
 - Atsidarykite komandinę eilutę (terminalą) savo kompiuteryje ir įveskite šias komandas:
-  -  `git clone -b v1.5 https://github.com/agnedzemydaite/Objektinis_2.git`
+  -  `git clone -b v1.5 https://github.com/agnedzemydaite/Objektinis_2.git` (priklausant nuo versijos pakeiskite versijos nr. `v1.5`)
   -  `cd Objektinis_2`
 - Sukurkite katalogą, kuriame bus generuojami "build" failai:
   - `mkdir build`

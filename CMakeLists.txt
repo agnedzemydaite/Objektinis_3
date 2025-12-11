@@ -32,10 +32,15 @@ list(FILTER SOURCE_FILES EXCLUDE REGEX "main\\.cpp$")
 add_executable(Studentai ${SOURCE_FILES} ${INCLUDE_DIR}/main.cpp)
 target_include_directories(Studentai PRIVATE ${INCLUDE_DIR})
 
+# Įtraukiame manifestą, kad programa visada veiktų su admin teisėmis
+if(MSVC)
+    set_target_properties(Studentai PROPERTIES
+        LINK_FLAGS "/MANIFESTUAC:\"level='requireAdministrator' uiAccess='false'\""
+    )
+endif()
+
 # Google Test
-
 enable_testing()
-
 # Google Test biblioteka iš GitHub
 include(FetchContent)
 FetchContent_Declare(

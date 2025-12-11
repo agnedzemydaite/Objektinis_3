@@ -4,6 +4,7 @@
 #include <vector>
 #include <fstream>
 #include <chrono>
+#include <functional>
 
 #include "studentai.h"
 #include "balu_vardu_meniu_ivestys.h"
